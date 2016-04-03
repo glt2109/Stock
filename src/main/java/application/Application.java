@@ -25,7 +25,8 @@ public class Application {
 				return new Quote("test", "10000.00", "test, inc.");
 			}
 		};
-	} */
+	} 
+	*/
 	
 	@Bean
 	Service yahooService() {

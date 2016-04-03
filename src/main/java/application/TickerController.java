@@ -28,4 +28,5 @@ public class TickerController {
 		return service.tryQuery(query);
 	}
 
+	
 }
