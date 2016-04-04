@@ -87,7 +87,7 @@ public class YahooFinance implements Service {
 		Quote quote = null;
 		
 		try {
-			quote = new Quote(values[0].replaceAll("^\"|\"$", ""), Double.parseDouble(values[1]), companyName.replaceAll("^\"|\"$", ""), true);
+			quote = new Quote(removeRedundantQuotes(values[0]), Double.parseDouble(values[1]), removeRedundantQuotes(companyName), true);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			e.printStackTrace();
 			System.out.println("No return value.");
@@ -101,6 +101,10 @@ public class YahooFinance implements Service {
 			return false;
 		}
 		return true;
+	}
+	
+	private static String removeRedundantQuotes(String value) {
+		return value.replaceAll("^\"|\"$", "");
 	}
 
 }
