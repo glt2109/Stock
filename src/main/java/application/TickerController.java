@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.Service;
+import service.HttpService;
 import sto.Query;
 import sto.Quote;
 
@@ -14,10 +14,10 @@ import sto.Quote;
 @Component
 public class TickerController {
 
-	final private Service service;
+	final private HttpService service;
 
 	@Autowired
-	public TickerController(Service service) {
+	public TickerController(HttpService service) {
 		this.service = service;
 	}
 	

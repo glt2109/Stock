@@ -5,9 +5,10 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+//import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 
-import service.Service;
+import service.HttpService;
 import service.YahooFinance;
 import sto.Query;
 import sto.Quote;
@@ -17,44 +18,45 @@ import sto.Quote;
 @SpringBootApplication
 public class Application {
 	
-	/*
+	
 	@Bean
-	Service mockService() {
-		return new Service() {
+	HttpService mockService() {
+		return new HttpService() {
 			public Quote tryQuery(Query stockQuery) {
-				return new Quote("test", "10000.00", "test, inc.");
+				return new Quote("TEST", 100.00, "Test, inc.", true);
 			}
 		};
 	} 
-	*/
 	
+	/*
 	@Bean
-	Service yahooService() {
+	HttpService yahooService() {
 		return new YahooFinance() {
 
 		};
-	}
+	} */
 	
 	public static void main(String[] args) throws Exception {
-		/*
+		
 		ApplicationContext context = 
 		          new AnnotationConfigApplicationContext(Application.class);
-		Service testService = context.getBean(Service.class);
+		HttpService testService = context.getBean(HttpService.class);
 		testService.tryQuery(new Query("fit"));
-		*/
+		
 		
 		SpringApplication.run(Application.class, args);
 		
+		
 		Scanner keyboard = new Scanner(System.in);
 		String input;
-		Service service = new YahooFinance();
+		//HttpService service = new YahooFinance();
 		
 		while(keyboard.hasNext())
 		{
 			input = keyboard.next();
 			
 			Query stockQuery = new Query(input);
-			Quote quote = service.tryQuery(stockQuery);
+			Quote quote = testService.tryQuery(stockQuery);
 
 	        System.out.println(quote.getSymbol());	
 			System.out.println(quote.getCompanyName());

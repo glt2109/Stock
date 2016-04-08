@@ -2,7 +2,7 @@ package application.tests;
 
 import org.junit.Test;
 
-import service.Service;
+import service.HttpService;
 import service.YahooFinance;
 import sto.Query;
 import sto.Quote;
@@ -14,7 +14,7 @@ public class TestYahooFinance {
 	@Test
 	public void returnsQuoteResponseForValidQuery() throws Exception {
 		Query query = new Query("fit");
-		Service service = new YahooFinance();
+		HttpService service = new YahooFinance();
 		Quote quote = service.tryQuery(query);
 
 		assertEquals("fit", quote.getSymbol());
@@ -26,7 +26,7 @@ public class TestYahooFinance {
 	@Test
 	public void returnsResponseForInvalidQuery() {
 		Query query = new Query("");
-		Service service = new YahooFinance();
+		HttpService service = new YahooFinance();
 		Quote quote = service.tryQuery(query);
 		
 		assertTrue(quote.getSymbol().equals("N/A"));

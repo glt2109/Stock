@@ -17,7 +17,7 @@ import sto.Quote;
  * @author gentrytran
  *
  */
-public class YahooFinance implements Service {
+public class YahooFinance implements HttpService {
 	
 	private static String baseUrl = "http://finance.yahoo.com/d/quotes.csv?s=";
 	
@@ -107,4 +107,30 @@ public class YahooFinance implements Service {
 		return value.replaceAll("^\"|\"$", "");
 	}
 
+	public static void main(String args[]) {
+		//String baseUrl = "http://finance.yahoo.com/d/quotes.csv?s=" + "tsla" + "&format=json";
+		String baseUrl = "http://finance.yahoo.com/webservice/v1/symbols/AAPL/quote?format=json";
+		//String baseUrl = "http://finance.yahoo.com/webservice/v1/tsla/allcurrencies/quote?format=json";
+		
+		StringBuilder builder = new StringBuilder();
+		
+		try {
+			URL url = new URL(baseUrl);
+			URLConnection yc = url.openConnection();
+	        BufferedReader in = new BufferedReader(
+	                                new InputStreamReader(
+	                                yc.getInputStream()));
+	        
+	        String symbol = "";
+
+	        while ((symbol = in.readLine()) != null) {
+	            builder.append(symbol);
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(builder.toString());
+		
+	}
 }
